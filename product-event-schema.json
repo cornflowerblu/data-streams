@@ -1,0 +1,78 @@
+{
+  "type": "record",
+  "name": "ProductEvent",
+  "namespace": "com.example.events",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "doc": "Unique identifier for this event"
+    },
+    {
+      "name": "productId",
+      "type": "string",
+      "doc": "Identifier of the product"
+    },
+    {
+      "name": "eventType",
+      "type": "string",
+      "doc": "Type of product event (e.g., CREATED, UPDATED, DELETED, PRICE_CHANGED)"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "Epoch timestamp in milliseconds when the event occurred"
+    },
+    {
+      "name": "userId",
+      "type": ["null", "string"],
+      "doc": "Optional identifier of the user who triggered the event",
+      "default": null
+    },
+    {
+      "name": "productDetails",
+      "type": {
+        "type": "record",
+        "name": "ProductDetails",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string",
+            "doc": "Product name"
+          },
+          {
+            "name": "category",
+            "type": "string",
+            "doc": "Product category"
+          },
+          {
+            "name": "price",
+            "type": "double",
+            "doc": "Current product price"
+          },
+          {
+            "name": "inventory",
+            "type": "int",
+            "doc": "Current inventory level"
+          },
+          {
+            "name": "attributes",
+            "type": {
+              "type": "map",
+              "values": "string"
+            },
+            "doc": "Additional product attributes",
+            "default": {}
+          }
+        ]
+      },
+      "doc": "Details about the product"
+    },
+    {
+      "name": "correlationId",
+      "type": ["null", "string"],
+      "doc": "Optional identifier to correlate related events",
+      "default": null
+    }
+  ]
+}

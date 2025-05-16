@@ -1,0 +1,47 @@
+{
+  "type": "record",
+  "name": "UserActivity",
+  "namespace": "com.example.events",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "doc": "Unique identifier for this event"
+    },
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "Identifier of the user who performed the activity"
+    },
+    {
+      "name": "activityType",
+      "type": "string",
+      "doc": "Type of activity performed (e.g., LOGIN, PURCHASE, PAGE_VIEW)"
+    },
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "Epoch timestamp in milliseconds when the activity occurred"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "doc": "Source of the event (e.g., MOBILE_APP, WEB_APP)"
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "map",
+        "values": "string"
+      },
+      "doc": "Additional contextual information about the activity",
+      "default": {}
+    },
+    {
+      "name": "correlationId",
+      "type": ["null", "string"],
+      "doc": "Optional identifier to correlate related events",
+      "default": null
+    }
+  ]
+}
