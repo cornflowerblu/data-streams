@@ -15,16 +15,19 @@ const streamName = 'data-stream-poc';
 async function getShardIterators(): Promise<Map<string, string>> {
   try {
     // Get all shards in the stream
-    const { Shards } = await kinesis.describeStream({ StreamName: streamName }).promise() as any;
+    const response = await kinesis.describeStream({ StreamName: streamName }).promise();
     
-    if (!Shards || Shards.length === 0) {
+    // The correct structure is response.StreamDescription.Shards
+    const shards = response.StreamDescription?.Shards;
+    
+    if (!shards || shards.length === 0) {
       throw new Error('No shards found in the stream');
     }
     
     // Get iterator for each shard
     const shardIterators = new Map<string, string>();
     
-    for (const shard of Shards) {
+    for (const shard of shards) {
       if (!shard.ShardId) continue;
       
       const params: AWS.Kinesis.GetShardIteratorInput = {
