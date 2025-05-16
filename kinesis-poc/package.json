@@ -1,0 +1,22 @@
+{
+  "name": "kinesis-poc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "setup": "ts-node src/setup.ts",
+    "producer": "ts-node src/producer.ts",
+    "consumer": "ts-node src/consumer.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Kinesis POC using TypeScript",
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "aws-sdk": "^2.1692.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
